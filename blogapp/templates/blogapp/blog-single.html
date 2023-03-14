@@ -1,0 +1,323 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>{{post.title}}</title>
+    <meta name="keywords" content="">
+	<meta name="description" content="">
+    <meta name="author" content="templatemo">
+    <!-- 
+	Medigo Template
+	http://www.templatemo.com/preview/templatemo_460_medigo
+    -->
+
+	<!-- Google Fonts -->
+	<link href="http://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic,700itali" rel="stylesheet">
+	<link href="http://fonts.googleapis.com/css?family=Raleway:400,900,800,700,500,200,100,600" rel="stylesheet">
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="{% static 'blogapp/bootstrap/bootstrap.css' %}">
+	<link rel="stylesheet" href="{% static 'blogapp/css/misc.css' %}">
+	<link rel="stylesheet" href="{% static 'blogapp/css/green-scheme.css' %}">
+	
+	<!-- JavaScripts -->
+	<script src="{% static 'blogapp/js/jquery-1.10.2.min.js' %}"></script>
+	<script src="{% static 'blogapp/js/jquery-migrate-1.2.1.min.js' %}"></script>
+
+	<link rel="shortcut icon" href="{% static 'blogapp/images/favicon.ico' %}" type="image/x-icon" />
+
+</head>
+<body>
+
+
+	<div class="responsive_menu">
+        <ul class="main_menu">
+            <li><a href="{% url 'welcome page' %}">Home</a></li>
+            <li><a href="#">Categories</a>
+            	<ul>
+            	{% for category in categories %}
+				    <li><a href="{% url 'category' category.name %}">{{category.name}}</a></li>
+				{% endfor %}
+            	</ul>
+            </li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul> <!-- /.main_menu -->
+    </div> <!-- /.responsive_menu -->
+
+	<header class="site-header clearfix">
+		<div class="container">
+
+			<div class="row">
+
+				<div class="col-md-12">
+
+					<div class="pull-left logo">
+						<a href="{% url 'welcome page' %}">
+							<img width="30px" src="{% static 'blogapp/images/logophono.jpg' %}" alt="Medigo">
+						</a>
+					</div>	<!-- /.logo -->
+
+					<div class="main-navigation pull-right">
+
+						<nav class="main-nav visible-md visible-lg">
+							<ul class="sf-menu">
+								<li><a href="{% url 'welcome page' %}">Home</a></li>
+					            <li><a href="#">Categories</a>
+					            	<ul>
+									{% for category in categories %}
+					                    <li><a href="{% url 'category' category.name %}">{{category.name}}</a></li>
+				                    {% endfor %}
+					            	</ul>
+					            </li>
+					        
+					            <li><a href="{% url 'contact' %}">Contact</a></li>
+							</ul> <!-- /.sf-menu -->
+						</nav> <!-- /.main-nav -->
+
+						<!-- This one in here is responsive menu for tablet and mobiles -->
+					    <div class="responsive-navigation visible-sm visible-xs">
+					        <a href="#nogo" class="menu-toggle-btn">
+					            <i class="fa fa-bars"></i>
+					        </a>
+					    </div> <!-- /responsive_navigation -->
+
+					</div> <!-- /.main-navigation -->
+
+				</div> <!-- /.col-md-12 -->
+
+			</div> <!-- /.row -->
+
+		</div> <!-- /.container -->
+	</header> <!-- /.site-header -->
+
+	<div class="first-widget parallax" id="blogId">
+		<div class="parallax-overlay">
+			<div class="container pageTitle">
+				<div class="row">
+					<div class="col-md-6 col-sm-6">
+						<h2 class="page-title">{{post.title}}</h2>
+					</div> <!-- /.col-md-6 -->
+					<div class="col-md-6 col-sm-6 text-right">
+						<span class="page-location">Home / willsphonodiction</span>
+					</div> <!-- /.col-md-6 -->
+				</div> <!-- /.row -->
+			</div> <!-- /.container -->
+		</div> <!-- /.parallax-overlay -->
+	</div> <!-- /.pageTitle -->
+
+	<div class="container">	
+		<div class="row">
+
+			<div class="col-md-8 blog-posts">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="post-blog">
+						<!-- 	
+							{% if messages %}
+                                <ul class="messages">
+                                  {% for message in messages %}
+                                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                  {% endfor %}
+                                </ul>
+                            {% endif %}
+
+							-->
+
+
+
+
+							<div class="blog-image">
+						<!--		<img src="{{post.image.url}}" alt=""> -->
+						      {% if post.video %}   
+								<iframe width="720" height="315" src="https://www.youtube.com/embed/5oH9Nr3bKfw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+							  {% endif %}
+							</div> <!-- /.blog-image -->
+							<div class="blog-content">
+								<span class="meta-date"><a href="#">{{post.created}}</a></span>
+							{% with post.comments.all as comments %}
+                               <span class="meta-comments"><a href="#" >{{comments.count}} comment{{ comments|pluralize }}</a></span>
+                            {% endwith %}
+								<span class="meta-author"><a href="#blog-author">Admin</a></span>
+								<h3>{{post.title}}</h3>
+								<p>{{post.body}}</p>
+								<div class="tag-items">
+                                    <span class="small-text">Tag:</span>
+                                    <a href="#" rel="tag">{{post.category.name}}</a>
+                                </div>
+							</div> <!-- /.blog-content -->
+						</div> <!-- /.post-blog -->
+					</div> <!-- /.col-md-12 -->
+				</div> <!-- /.row -->
+				<div class="row">
+					<div class="col-md-12">
+						<div id="blog-author" class="clearfix">
+                            <a href="#" class="blog-author-img pull-left">
+                                <img src="{% static 'blogapp/images/includes/author.png' %}" alt="">
+                            </a>
+                            <div class="blog-author-info">
+                                <h4 class="author-name"><a href="#">WPI</a></h4>
+                                <p>welcome to WPI</p>
+                            </div>
+                        </div>
+					</div> <!-- /.col-md-12 -->
+				</div> <!-- /.row -->
+				<div class="row">
+					<div class="col-md-12">
+                        <div id="blog-comments" class="blog-post-comments">
+						{% with comments.count as total_comments %}
+                            <h3>{{total_comments}} comment{{total_comments|pluralize}}</h3>
+						{% endwith %}
+                            <div class="blog-comments-content">
+                            {% for comment in comments %}    
+                                <div class="media">
+                                    <div class="pull-left">
+                                        <img class="media-object" src="{% static 'blogapp/images/includes/comment3.jpg' %}" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="media-heading">
+                                        	<h4> comment {{ forloop.counter}} by {{ comment.name}}</h4> 
+                                        	<a href="#"><span>{{comment.created}}</span><span>Reply</span></a>
+                                        </div>
+                                        <p>{{comment.body}}.</p>
+						
+                                    </div>
+                                </div>
+							{% endfor %}
+                            </div> <!-- /.blog-comments-content -->
+                        </div> <!-- /.blog-post-comments -->
+                    </div> <!-- /.col-md-12 -->
+				</div> <!-- /.row -->
+				<div class="row">
+                    <div class="col-md-12">
+                        <div class="comment-form">
+                            <h3>Leave a comment</h3>
+                            <div class="widget-inner">
+                             <form method="post" action="{% url 'detail' post.pk %}">
+								{% csrf_token %}
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <p>
+                                            <label for="name-id">Your Name:</label>
+									        {{ comment_form.name }}
+                                        </p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p>
+                                            <label for="email-id">Email Address:</label>
+                                            {{ comment_form.email }}
+                                        </p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p>
+                                            <label for="site-id">Whatsapp no. :</label>
+                                            {{ comment_form.whatsapp }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p>
+                                            <label for="comment">Your comment:</label>
+                                            {{ comment_form.body }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <input class="mainBtn" type="submit" name="submit" value="Submit Comment" id="submit">
+                                    </div>
+                                </div>
+                             </form>
+                            </div> <!-- /.widget-inner -->
+                        </div> <!-- /.widget-main -->
+                    </div> <!-- /.col-md-12 -->
+                </div> <!-- /.row -->
+			</div> <!-- /.col-md-8 -->
+
+			<div class="col-md-4">
+				<div class="sidebar">
+					<div class="sidebar-widget">
+						<h5 class="widget-title">Former Posts</h5>
+					{% for former_post in former_posts %}
+						<div class="last-post clearfix">
+							<div class="thumb pull-left">
+								<a href="{% url 'detail' former_post.id  %}">
+									<iframe
+                      width="80"
+                      height="80"
+					{% if former_post.video %}  
+                      src="https://www.youtube.com/embed/{{ former_post.video }}"
+					{% endif %}
+                      title="YouTube video player"
+                      frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowfullscreen
+                    ></iframe>
+								</a>
+							</div>
+							<div class="content">
+								<span>{{ former_post.created }}</span>
+								<h4><a href="{% url 'detail' former_post.id %}">{{ former_post.title }}</a></h4>
+							</div>
+						</div>
+					{% endfor %} <!-- /.last-post -->
+						
+					</div> <!-- /.sidebar-widget -->
+					<div class="sidebar-widget">
+						<h5 class="widget-title">Categories</h5>
+						<div class="row categories">
+							<div class="col-md-6">
+								<ul>
+								{% for category in categories %}	
+								    <li><a href="{% url 'category' category.name %}">{{category.name}}</a></li>
+								{% endfor %}	
+								</ul>
+							</div>
+							
+						</div> <!-- /.row -->
+					</div> <!-- /.sidebar-widget -->
+					<div class="sidebar-widget">
+						<h5 class="widget-title">Flickr Feed</h5>
+						<ul id="flickr-feed" class="thumbs"></ul>
+					</div> <!-- /.sidebar-widget -->
+					<div class="sidebar-widget">
+						<h5 class="widget-title">WPI Mission</h5>
+						<p class="light-text">Wills Phono-diction International is an educational company that trains people to speak right for their voice to be heard. W.P.I Voice Right Africa is a community or platform for the African child's voice to be heard. It also searches, empowers and displays the talents in African children as the heritage of Africa.</p>
+					</div> <!-- /.sidebar-widget -->
+				</div> <!-- /.sidebar -->
+			</div> <!-- /.col-md-4 -->
+
+		</div> <!-- /.row -->
+	</div> <!-- /.container -->	
+
+
+	<footer class="site-footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<nav class="footer-nav clearfix">
+						<ul class="footer-menu">
+                            <li><a href="{% url 'welcome page' %}">Home</a></li>
+                            <li><a href="{% url 'contact' %}">Contact</a></li>
+						</ul> <!-- /.footer-menu -->
+					</nav> <!-- /.footer-nav -->
+				</div> <!-- /.col-md-12 -->
+			</div> <!-- /.row -->
+			<div class="row">
+				<div class="col-md-12">
+					<p class="copyright-text">Copyright &copy; 2023 WPI</p>
+				</div> <!-- /.col-md-12 -->
+			</div> <!-- /.row -->
+		</div> <!-- /.container -->
+	</footer> <!-- /.site-footer -->
+
+	<!-- Scripts -->
+	<script src="{% static 'blogapp/js/min/plugins.min.js' %}"></script>
+	<script src="{% static 'blogapp/js/min/medigo-custom.min.js' %}"></script>
+
+
+</body>
+</html>
