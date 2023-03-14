@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'blogapp.apps.BlogappConfig',
 ]
 
+CSRF_TRUSTED_ORIGINS = ['*']
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     "whitenoise.middleware.WhiteNoiseMiddleware",
