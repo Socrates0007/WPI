@@ -154,7 +154,7 @@
                 <div class="blog-image">
                   <a href="{% url 'detail' post.id %}">
                     <img src="{{post.image.url}}" alt="" />
-                    <iframe
+                    <div class="iframe-container"><iframe
                       width="720"
                       height="315"
 					{% if post.video %}  
@@ -164,7 +164,7 @@
                       frameborder="0"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                       allowfullscreen
-                    ></iframe>
+                    ></iframe></div>
                   </a>
                 </div>
                 <!-- /.blog-image -->
