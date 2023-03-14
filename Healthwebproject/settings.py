@@ -78,11 +78,11 @@ WSGI_APPLICATION = 'Healthwebproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'healthproject',
+        'NAME': 'railway',
         'USER': 'postgres',
-        'PASSWORD':'postgres',
-        'HOST':'127.0.0.1',
-        'PORT':'5432'
+        'PASSWORD':'WAZRgzvTrbwpjkMWqtCD',
+        'HOST':'containers-us-west-55.railway.app',
+        'PORT':'5835'
     }
 }
 
