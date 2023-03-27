@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'blogapp.apps.BlogappConfig',
 ]
 
-CSRF_TRUSTED_ORIGINS = ['https://wpi-production.up.railway.app/','wpi-production.up.railway.app/','wpi-production.up.railway.app','https://wpi-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://wpi-production.up.railway.app/','wpi-production.up.railway.app/','wpi-production.up.railway.app','https://wpi-production.up.railway.app','https://wpivoicerightafrica.com.ng,','wpivoicerightafrica.com.ng,']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
